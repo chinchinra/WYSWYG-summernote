@@ -26,6 +26,7 @@
           </div>
           <div th:utext="${article.content}" class="panel-body"></div>
           <button class="primary-btn btn" th:onclick="|window.location.href='/article/update/${article.id}'|">수정하기</button>
+          <button class="primary-btn btn" th:onclick="|window.location.href='/'|">메인</button>
         </div>
       </div>
     </div>

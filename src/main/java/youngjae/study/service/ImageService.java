@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -75,9 +76,13 @@ public class ImageService {
 		String saveFileName = uuid.toString() + file.getOriginalFilename();
 		File saveFile = new File(rootLocation, saveFileName);
 		FileCopyUtils.copy(file.getBytes(), saveFile);
-		
+
+//		uploadFileRepository.findAll(PageRequest.of(1,5));
+
 		return saveFileName;
 	}
+
+
 	
 	
 	

@@ -38,15 +38,7 @@ public class ArticleController {
     	model.addAttribute("article", article);
     	return "article/detail";
     }
-    
-    @GetMapping("")
-    public String getArticleList(Model model) {
-    	List<Article> articleList = articleRepository.findAll();
-    	model.addAttribute("articleList", articleList);
-    	articleList.forEach(System.out::println);
-    	return "article/list";
-    }
-    
+
     @GetMapping("/update/{id}")
     public String getArticleUpdate(Model model, @PathVariable Long id) {
     	Article article = articleRepository.findById(id).get();
@@ -58,9 +50,11 @@ public class ArticleController {
     @PostMapping("/update/{id}")
     public String setArticleUpdate(Model model, @PathVariable Long id, Article updatedArticle) {
     	Article article = articleRepository.findById(id).get();
-    	article.setTitle(updatedArticle.getTitle());
-    	article.setContent(updatedArticle.getContent());
-    	article.setUpdateDate(LocalDateTime.now());
+
+    	article.update(updatedArticle.getTitle(),updatedArticle.getAuthor(),updatedArticle.getContent(),LocalDateTime.now());
+//    	article.setTitle(updatedArticle.getTitle());
+//    	article.setContent(updatedArticle.getContent());
+//    	article.setUpdateDate(LocalDateTime.now());
     	articleRepository.save(article);
     	return "redirect:/article/" + article.getId();
     	
